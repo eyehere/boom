@@ -15,5 +15,45 @@
   +----------------------------------------------------------------------+
 */
 class Bootstrap extends \Yaf\Bootstrap_Abstract {
-	
+    
+    private $_arrLocalNameSpace = array('Page', 'Util');
+
+    /**
+     * @brief 注册app的本地命名空间
+     * @param \Yaf\Dispatcher $dispatcher
+     */
+    public function _initLoader( \Yaf\Dispatcher $dispatcher ) {
+        \Yaf\Loader::getInstance()->registerLocalNameSpace( $this->_arrLocalNameSpace );
+    }
+    
+    /**
+     * @brief 把配置信息加载进入注册表
+     * @param \Yaf\Dispatcher $dispatcher
+     */
+    public function _initConfig( \Yaf\Dispatcher $dispatcher ) {
+        $config = \Yaf\Application::app()->getConfig();
+        foreach ( $config as $section=>$arrConf ) {
+            \Yaf\Registry::set($section, $arrConf);
+        }
+    }
+    
+    /**
+     * @brief 初始化一个调度插件 在yaf的流程里做一些事情
+     * @param \Yaf\Dispatcher $dispatcher
+     */
+    public function _initSchedulerPlugin( \Yaf\Dispatcher $dispatcher ) {
+        $scheduler = new Scheduler_Plugin();
+        $dispatcher->registerPlugin($scheduler);
+    }
+    
+    /**
+     * @brief 初始化渲染相关
+     * @param \Yaf\Dispatcher $dispatcher
+     */
+    public function _initRender ( \Yaf\Dispatcher $dispatcher ) {      
+        $dispatcher->autoRender(false);
+        $strViewPath = APPLICATION_PATH . DS . 'views';
+        $dispatcher->initView($strViewPath);
+    }
+    
 }

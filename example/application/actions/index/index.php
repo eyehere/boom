@@ -1,7 +1,7 @@
 <?php
 /*
   +----------------------------------------------------------------------+
-  | Boom                                                                  |
+  | Boom                                                                 |
   +----------------------------------------------------------------------+
   | This source file is subject to version 2.0 of the Apache license,    |
   | that is bundled with this package in the file LICENSE, and is        |
@@ -14,7 +14,10 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-define('APPLICATION_PATH', __DIR__);
-define('DS', DIRECTORY_SEPARATOR);
-$application = new \Yaf\Application(APPLICATION_PATH . '/conf/application.ini');
-$application->bootstrap()->run();
+class index_Action extends \Yaf\Action_Abstract {
+	
+	public function execute() {
+		echo "Boom is a php framework written in php base on Yaf!";
+	}
+	
+}
