@@ -44,19 +44,7 @@ class Scheduler_Plugin extends \Yaf\Plugin_Abstract {
      * @param \Yaf\Response_Abstract $response
      */
     public function preDispatch(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
-        $strControllerName = $request->getControllerName();
-        $strActionName     = $request->getActionName();
-		
-        $arrActionPath     = array_map( 'strtolower', array( $strControllerName, $strActionName) );
         
-        $strActionPathParam	= \Yaf\Registry::get('boom')->actions->path;
-        $request->setParam( $strActionPathParam, $arrActionPath );
-        
-        $strViewPathParam	= \Yaf\Registry::get('boom')->view->path;
-        $strViewPath		= strtolower($strControllerName . DS . $strActionName);
-        $request->setParam( $strViewPathParam, $strViewPath );
-        
-        $request->setControllerName(\Yaf\Registry::get('boom')->actions->proxy);
     }
     
     public function postDispatch(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {

@@ -14,7 +14,7 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class index_Action extends \Yaf\Action_Abstract {
+class Index_index_Action extends \Yaf\Action_Abstract {
 	
 	public function execute() {
 		echo "Boom is a php framework written in php base on Yaf!";

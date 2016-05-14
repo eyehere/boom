@@ -14,7 +14,8 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-define('APPLICATION_PATH', __DIR__);
 define('DS', DIRECTORY_SEPARATOR);
+define('APPLICATION_PATH', dirname(__DIR__) . DS . 'application' . DS);
+
 $application = new \Yaf\Application(APPLICATION_PATH . '/conf/application.ini');
 $application->bootstrap()->run();

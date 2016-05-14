@@ -14,17 +14,12 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class welcome_Action extends \Yaf\Action_Abstract {
+class Demo_welcome_Action extends \Yaf\Action_Abstract {
 	
 	public function execute() {
 		$this->_view->assign('name','Boom');
-		$this->_display();
+		$this->display('demo/welcome');
 	}
 	
-	private function _display() {
-		$strViewPathParam	= \Yaf\Registry::get('boom')->view->path;
-		$strViewPath		= $this->_request->getParam( $strViewPathParam );
-		$this->display($strViewPath);
-	}
 	
 }

@@ -16,9 +16,18 @@
 */
 class Bootstrap extends \Yaf\Bootstrap_Abstract {
     
-    private $_arrLocalNameSpace = array('Page', 'Util');
-
-    /**
+    private $_arrLocalNameSpace = array('Page', 'Logic', 'Util');
+	
+	/**
+	 * @brief 设置默认的配置信息
+	 *		  如：restful api对应的版本设置为默认的controller
+	 * @param \Yaf\Dispatcher $dispatcher
+	 */
+	public function _initDefault( \Yaf\Dispatcher $dispatcher ) {
+		$dispatcher->setDefaultController('boom');
+	}
+	
+	/**
      * @brief 注册app的本地命名空间
      * @param \Yaf\Dispatcher $dispatcher
      */
@@ -50,8 +59,8 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
      * @brief 初始化渲染相关
      * @param \Yaf\Dispatcher $dispatcher
      */
-    public function _initRender ( \Yaf\Dispatcher $dispatcher ) {      
-        $dispatcher->autoRender(false);
+    public function _initRender ( \Yaf\Dispatcher $dispatcher ) {
+		$dispatcher->autoRender(false);
         $strViewPath = APPLICATION_PATH . DS . 'views';
         $dispatcher->initView($strViewPath);
     }

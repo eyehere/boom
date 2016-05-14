@@ -14,20 +14,15 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class boom_Controller extends \Yaf\Controller_Abstract {
+class Boom_Controller extends \Yaf\Controller_Abstract {
     
     /**
      * @brief action的路由代理
      * @throws \Exception
      */
     public function init( ) {
-        $strActionPathParam	= \Yaf\Registry::get('boom')->actions->path;
-        $strAction			= $this->getRequest()->getActionName();
-        $arrActionPath		= $this->getRequest()->getParam($strActionPathParam, null);
-		
-        if ( null === $arrActionPath ) {
-			throw new \Exception("[NOT FOUND]{$strAction}");
-		}
+        $strAction		= $this->getRequest()->getActionName();
+		$arrActionPath	= explode('_', $strAction);
         
         $strSuffix		= \Yaf\Registry::get('application')->ext;
         $strActionPath	=  'actions' . DS . implode(DS, $arrActionPath) . ".$strSuffix";
