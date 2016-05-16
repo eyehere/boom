@@ -14,10 +14,11 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Index_index_Action extends \Boom\Action\Base {
+namespace Boom\Config;
+
+//A/B测试配置
+class Ab {
 	
-	public function invoke() {
-		echo "Boom is a php framework written in php base on Yaf!";
-	}
+	
 	
 }

@@ -14,7 +14,9 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Scheduler_Plugin extends \Yaf\Plugin_Abstract {
+namespace Boom\Plugin;
+
+class Smallflow extends \Yaf\Plugin_Abstract {
     
     /**
      * @brief 在路由之前执行,这个钩子里，可以做url重写等功能
@@ -31,13 +33,14 @@ class Scheduler_Plugin extends \Yaf\Plugin_Abstract {
      * @param \Yaf\Response_Abstract $response
      */
     public function routerShutdown(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
-    	$objConfig		= \Yaf\Application::app()->getConfig();
-		$strController	= trim($objConfig->application->baseUri, '/');
-		if ( !empty($strController) ) {
-			$request->setControllerName($strController);
-		}
+    	
     }
     
+	/**
+	 * @brief brfore dispatchLoop
+	 * @param \Yaf\Request_Abstract $request
+	 * @param \Yaf\Response_Abstract $response
+	 */
     public function dispatchLoopStartup(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
     	
     }
@@ -51,6 +54,11 @@ class Scheduler_Plugin extends \Yaf\Plugin_Abstract {
         
     }
     
+	/**
+	 * @brief after controller invoke
+	 * @param \Yaf\Request_Abstract $request
+	 * @param \Yaf\Response_Abstract $response
+	 */
     public function postDispatch(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
     	
     }

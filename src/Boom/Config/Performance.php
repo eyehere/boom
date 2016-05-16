@@ -14,10 +14,27 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Index_index_Action extends \Boom\Action\Base {
+
+namespace Boom\Config;
+
+//性能分析白名单配置
+class Performance {
 	
-	public function invoke() {
-		echo "Boom is a php framework written in php base on Yaf!";
+	/**
+	 * @brief 线上性能分析白名单
+	 * @var array 
+	 */
+	public static $arrWhiteList = array(
+		
+	);
+	
+	/**
+	 * @brief 判断用户是否是性能debug白名单用户
+	 * @param int $userId
+	 * @return bool
+	 */
+	public static function isWhite( $userId ) {
+		return in_array( intval($userId), self::$arrWhiteList, true );
 	}
 	
 }

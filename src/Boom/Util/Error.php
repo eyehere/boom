@@ -14,10 +14,38 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Index_index_Action extends \Boom\Action\Base {
+namespace Boom\Util;
+
+/**
+ * 错误码定义
+ */
+class Error {
 	
-	public function invoke() {
-		echo "Boom is a php framework written in php base on Yaf!";
+	const ERR_SUCCESS = 0;		//成功响应码
+	
+	
+	const ERR_SERVER_EXCEPTION = 50000;	//服务器内部异常
+	
+	/**
+	 * @brief 错误码和错误消息的对应表
+	 * @var type 
+	 */
+	public static $arrMsg = array(
+		self::ERR_SUCCESS			=> '成功',
+		self::ERR_SERVER_EXCEPTION	=> '服务器内部异常',
+	);
+
+	/**
+	 * @brief 获取错误码对应的消息 
+	 * @param type $errno
+	 * @return string
+	 */
+	public static function getMsg($errno) {
+		if ( isset(self::$arrMsg[$errno]) ) {
+			return self::$arrMsg[$errno];
+		}
+		
+		return '';
 	}
 	
 }

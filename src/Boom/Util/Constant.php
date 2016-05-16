@@ -14,10 +14,13 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Index_index_Action extends \Boom\Action\Base {
+namespace Boom\Util;
+
+class Constant {
 	
-	public function invoke() {
-		echo "Boom is a php framework written in php base on Yaf!";
-	}
+	const MUST_LOGIN = 1;	//必须验证强登录
+	const LONG_LOGIN = 2;	//长登录
+	const NOT_LOGIN	 = 3;	//不需要登录
+	
 	
 }

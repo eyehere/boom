@@ -14,12 +14,11 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Demo_welcome_Action extends \Yaf\Action_Abstract {
+class Demo_welcome_Action extends \Boom\Action\Base {
 	
-	public function execute() {
+	public function invoke() {
 		$this->_view->assign('name','Boom');
 		$this->display('demo/welcome');
 	}
-	
-	
+		
 }

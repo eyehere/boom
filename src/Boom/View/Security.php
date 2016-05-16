@@ -14,10 +14,51 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Index_index_Action extends \Boom\Action\Base {
+namespace Boom\View;
+
+/**
+ * 针对输出进行安全处理，默认都经过XSS处理，不处理的需要提前配置
+ */
+class Security extends \Yaf\View\Simple {
 	
-	public function invoke() {
-		echo "Boom is a php framework written in php base on Yaf!";
+	/**
+	 * @brief ->var decorate
+	 * @param type $name
+	 * @param type $value
+	 */
+	public function __set($name, $value = null) {
+		
+		parent::__set($name, $value);
+	}
+	
+	/**
+	 * @brief assign XSS encode
+	 * @param type $name
+	 * @param type $value
+	 */
+	public function assign($name, $value = null) {
+		
+		parent::assign($name, $value);
+	}
+	
+	/**
+	 * @brief display XSS encode
+	 * @param type $tpl
+	 * @param type $var_array
+	 */
+	public function display($tpl, $var_array = array()) {
+		
+		parent::display($tpl, $var_array);
+	}
+	
+	/**
+	 * @brief render XSS encode
+	 * @param type $tpl
+	 * @param type $var_array
+	 */
+	public function render($tpl, $var_array = array()) {
+		
+		parent::render($tpl, $var_array);
 	}
 	
 }

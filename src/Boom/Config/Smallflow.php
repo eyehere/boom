@@ -14,10 +14,29 @@
   | Author: Weijun Lu  <yiming_6weijun@163.com>                          |
   +----------------------------------------------------------------------+
 */
-class Index_index_Action extends \Boom\Action\Base {
+namespace Boom\Config;
+
+//小流量配置
+class Smallflow {
 	
-	public function invoke() {
-		echo "Boom is a php framework written in php base on Yaf!";
+	/**
+	 * @brief 小流量开关
+	 * @var bool 
+	 */
+	public static $enable = false;
+	
+	/**
+	 * @brief 小流量判断
+	 * @return boolean
+	 */
+	public static function enable() {
+		if ( !self::$enable ) {
+			return false;
+		}
+		
+		//开启小流量的策略配置判断
+		
+		return true;
 	}
 	
 }
