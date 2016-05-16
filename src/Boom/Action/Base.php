@@ -23,6 +23,12 @@ abstract class Base extends \Yaf\Action_Abstract {
 	 * @var type 
 	 */
 	protected $_validator = null;
+	
+	/**
+	 * @brief 排除XSS安全处理的名单，一般很少会使用，正常情况下都需要进行安全处理
+	 * @var type 
+	 */
+	protected $_xssFilterExcept = array();
 
 	/**
 	 * @brief 重写 增加基础类库的钩子
@@ -52,6 +58,10 @@ abstract class Base extends \Yaf\Action_Abstract {
 	 * 执行具体动作之前
 	 */
 	protected function _beforeInvoke() {
+		//如果控制动作里设置了不需要进行XSS过滤的白名单，需要加入
+		if ( !empty($this->_xssFilterExcept) ) {
+			$this->_view->setXssFilterExcept($this->_xssFilterExcept);
+		}
 		
 	}
 
@@ -66,30 +76,32 @@ abstract class Base extends \Yaf\Action_Abstract {
 	protected function _afterInvoke() {
 		
 	}
-
+	
 	/**
-	 * @brief 输出Json 串
-	 * @param array $data
-	 * @param int $errno
-	 * @param string $errmsg
+	 * @brief 把view的方法给controller
+	 * @param type $name
+	 * @param type $value
 	 */
-	public function renderJson($data=array(), $errno= \Boom\Util\Error::ERR_SUCCESS, $errmsg='') {
-		if ( empty($errmsg) ) {
-			$errmsg = \Boom\Util\Error::getMsg($errno);
-		}
-		echo json_encode( compact('errno', 'errmsg', 'data') );
+	protected function assign($name, $value = null) {
+		$this->_view->assign($name, $value);
 	}
 	
 	/**
-	 * @brief 失败输出Json 串
-	 * @param array $data
-	 * @param int $errno
-	 * @param string $errmsg
+	 * @brief 把view的方法给controller
+	 * @param type $data
+	 * @param type $errno
+	 * @param type $errmsg
 	 */
-	public function renderFailJson($data=array()) {
-		$errno	= \Boom\Util\Error::ERR_SERVER_EXCEPTION;
-		$errmsg = \Boom\Util\Error::getMsg($errno);
-		echo json_encode( compact('errno', 'errmsg', 'data') );
+	protected function renderJson($data=array(), $errno= \Boom\Util\Error::ERR_SUCCESS, $errmsg='') {
+		$this->_view->renderJson($data, $errno, $errmsg);
+	}
+	
+	/**
+	 * @brief 把view的方法给controller
+	 * @param type $data
+	 */
+	protected function renderFailJson($data=array()) {
+		$this->_view->renderFailedJson($data);
 	}
 	
 }
