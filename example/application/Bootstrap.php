@@ -24,7 +24,7 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
 	 * @param \Yaf\Dispatcher $dispatcher
 	 */
 	public function _initDefault( \Yaf\Dispatcher $dispatcher ) {
-		$dispatcher->setDefaultController('boom');
+		
 	}
 	
 	/**

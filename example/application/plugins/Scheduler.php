@@ -31,7 +31,11 @@ class Scheduler_Plugin extends \Yaf\Plugin_Abstract {
      * @param \Yaf\Response_Abstract $response
      */
     public function routerShutdown(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
-    	
+    	$objConfig		= \Yaf\Application::app()->getConfig();
+		$strController	= trim($objConfig->application->baseUri, '/');
+		if ( !empty($strController) ) {
+			$request->setControllerName($strController);
+		}
     }
     
     public function dispatchLoopStartup(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {

@@ -15,7 +15,7 @@
   +----------------------------------------------------------------------+
 */
 define('DS', DIRECTORY_SEPARATOR);
-define('APPLICATION_PATH', dirname(__DIR__) . DS . 'application' . DS);
+define('APPLICATION_PATH', dirname(__DIR__) . DS . 'application');
 
 $application = new \Yaf\Application(APPLICATION_PATH . '/conf/application.ini');
 $application->bootstrap()->run();
