@@ -64,7 +64,8 @@ class Bootstrap extends \Yaf\Bootstrap_Abstract {
      * @param \Yaf\Dispatcher $dispatcher
      */
     public function _initPlugin( \Yaf\Dispatcher $dispatcher ) {
-        $dispatcher->registerPlugin( new \Boom\Plugin\Scheduler() );
+		$dispatcher->registerPlugin( new \Boom\Plugin\Security() )
+				   ->registerPlugin( new \Boom\Plugin\Scheduler() );
     }
     
     /**

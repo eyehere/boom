@@ -34,7 +34,8 @@ class Scheduler extends \Yaf\Plugin_Abstract {
      */
     public function routerShutdown(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
     	$objConfig		= \Yaf\Application::app()->getConfig();
-		$strController	= trim($objConfig->application->baseUri, '/');
+		$arrPath		= explode('/', trim($objConfig->application->baseUri, '/'));
+		$strController	= array_pop( $arrPath );
 		if ( !empty($strController) ) {
 			$request->setControllerName($strController);
 		}

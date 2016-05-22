@@ -24,7 +24,15 @@ class Security extends \Yaf\Plugin_Abstract {
      * @param \Yaf\Response_Abstract $response
      */
     public function routerStartup(\Yaf\Request_Abstract $request, \Yaf\Response_Abstract $response) {
-        
+        $referer	= $request->getServer('HTTP_REFERER');
+		$referHost	= parse_url($referer, PHP_URL_HOST);
+		
+		$host		= $request->getServer('HTTP_HOST');
+		
+		$referDomain = implode('.', array_slice(explode('.', $referHost), -2));
+		$domain		 = implode('.', array_slice(explode('.', $host), -2));
+		
+		
     }
 	
     /**
